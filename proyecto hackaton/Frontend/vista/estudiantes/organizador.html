@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizador de Cursos</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f9f9f9, #0d6efd);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .central-container {
+      background-color: #ffffff; /* Contenedor claro */
+      padding: 2rem 3rem;
+      border-radius: 0.5rem;
+      max-width: 900px;
+      margin: 3rem auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-weight: bold;
+      color: #212529;
+    }
+    header p {
+      color: #495057;
+      font-size: 1.1rem;
+    }
+    header hr {
+      border-top: 2px solid #ced4da;
+      width: 80%;
+      margin: 1rem auto;
+    }
+    /* Mejora en la selección de la facultad */
+    #facultad {
+      max-width: 400px;
+      margin: auto;
+    }
+    .table-custom {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .table-custom th, .table-custom td {
+      border: 1px solid #dee2e6;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .table-custom tbody tr:nth-child(odd) {
+      background-color: #f8f9fa;
+    }
+    .table-custom tbody tr:hover {
+      background-color: #e9ecef;
+    }
+    /* Botón de acción con transición */
+    .btn-sugerir {
+      background-color: #ffffff;
+      color: #212529;
+      border: 2px solid #212529;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .btn-sugerir:hover {
+      background-color: #212529;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="central-container text-center">
+    <!-- Encabezado -->
+    <header>
+      <h1 class="display-4">Bienvenido</h1>
+      <p class="lead">Ingresa los datos solicitados y descubre tu horario adecuado.</p>
+      <hr>
+    </header>
+    
+    <!-- Selección de Facultad -->
+    <section class="mb-4">
+      <label for="facultad" class="h5">Facultad de Ingeniería</label>
+      <select id="facultad" class="form-select mx-auto">
+        <option selected>Facultad de Ingeniería</option>
+      </select>
+    </section>
+    
+    <!-- Tablas de Cursos -->
+    <section class="row">
+      <!-- Cursos (Izquierda) -->
+      <div class="col-md-6">
+        <h3 class="mb-3">Cursos</h3>
+        <table class="table table-custom table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Secciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Matemáticas</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Física</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Programación</td>
+              <td>4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Seleccionados (Derecha) -->
+      <div class="col-md-6">
+        <h3 class="mb-3">Seleccionados</h3>
+        <table class="table table-custom table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Curso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Matemáticas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    <!-- Botón de Acción -->
+    <div class="d-flex justify-content-end">
+      <button type="button" id="btnSugerir" class="btn btn-sugerir">Sugerir</button>
+    </div>
+  </div>
+  <!-- Bootstrap JS y dependencias -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('btnSugerir').addEventListener('click', function() {
+      window.location.href = "horario.html";
+    });
+  </script>
+</body>
+</html>

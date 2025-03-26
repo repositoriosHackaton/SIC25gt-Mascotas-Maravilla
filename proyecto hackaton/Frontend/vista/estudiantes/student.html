@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stepper Módulo Estudiantes</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #f9f9f9, #0d6efd);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .step {
+        display: none;
+      }
+      .step.active {
+        display: block;
+      }
+      /* Estilo para el encabezado del stepper */
+      .stepper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        list-style-type: none;
+        counter-reset: step;
+      }
+      .stepper li {
+        text-align: center;
+        position: relative;
+        flex: 1;
+        counter-increment: step;
+      }
+      .stepper li::before {
+        content: counter(step);
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        display: block;
+        text-align: center;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background-color: #ced4da;
+        color: #fff;
+      }
+      .stepper li.active::before,
+      .stepper li.completed::before {
+        background-color: #0d6efd;
+      }
+      .stepper li::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background-color: #ced4da;
+        top: 1rem;
+        left: -50%;
+        z-index: -1;
+      }
+      .stepper li:first-child::after {
+        content: none;
+      }
+      .stepper li.completed::after {
+        background-color: #0d6efd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+      <!-- Títulos principales -->
+      <div class="text-center mb-4">
+        <h1 class="display-4">Bienvenido</h1>
+        <p class="lead text-muted">
+          Ingresa los datos solicitados y descubre tu carrera adecuada.
+        </p>
+      </div>
+
+      <!-- Stepper Header -->
+      <ul class="stepper">
+        <li id="indicator-step1" class="active">Paso 1</li>
+        <li id="indicator-step2">Paso 2</li>
+        <li id="indicator-step3">Paso 3</li>
+      </ul>
+
+      <!-- PASO 1 -->
+      <div id="step1" class="step active">
+        <div class="card">
+          <div class="card-body">
+            <form id="formEstudiante">
+              <div class="row g-3">
+                <!-- Columna Izquierda: Aptitudes -->
+                <div class="col-md-6 border-end">
+                  <div class="mb-3">
+                    <label class="form-label">
+                      Seleccione las aptitudes en las que considera que tiene un
+                      buen desempeño.
+                    </label>
+                    <select
+                      class="form-select"
+                      name="aptitud"
+                      id="aptitud"
+                    ></select>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="btnAgregar"
+                  >
+                    Agregar
+                  </button>
+                  <div class="mt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Aptitudes Agregadas</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tablaAptitudes">
+                        <!-- Aquí se agregarán las aptitudes -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- Columna Derecha: Habilidades Técnicas -->
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">
+                      Seleccione las habilidades técnicas que ha desarrollado.
+                    </label>
+                    <div
+                      class="form-check"
+                      name="habilidades"
+                      id="habilidades"
+                    ></div>
+                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Botón de Acción: Siguiente -->
+              <div class="d-flex justify-content-end">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="siguientePaso()"
+                >
+                  Siguiente
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 2 -->
+      <div id="step2" class="step">
+        <div class="card">
+          <div class="card-body">
+            <form id="formIntereses">
+              <header class="text-center mb-4">
+                <h1 class="display-4">Intereses</h1>
+                <p class="lead">Ingresa los datos solicitados.</p>
+                <hr />
+              </header>
+              <div class="row">
+                <!-- Columna Izquierda: Porcentaje de Interés -->
+                <div class="col-md-6">
+                  <h3>Porcentaje de Interés</h3>
+                  <p>
+                    Ingrese el porcentaje de interés sobre los siguientes temas.
+                  </p>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Área</th>
+                        <th>Interés (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ingeniería y tecnología</td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control"
+                            value="50"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Ciencias de la salud</td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control"
+                            value="20"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Economía y negocios</td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control"
+                            value="80"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Arte y diseño</td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control"
+                            value="10"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Columna Derecha: Preferencias -->
+                <div class="col-md-6">
+                  <h3 class="text-center">Preferencias</h3>
+                  <div class="mb-4">
+                    <p>
+                      ¿En qué tipo de entorno laboral se sentiría más cómodo?
+                    </p>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="oficina"
+                        id="entornoOficina"
+                      />
+                      <label class="form-check-label" for="entornoOficina"
+                        >Trabajo de Oficina</label
+                      >
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="campo"
+                        id="entornoCampo"
+                      />
+                      <label class="form-check-label" for="entornoCampo"
+                        >Trabajo de Campo en la Naturaleza</label
+                      >
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="laboratorio"
+                        id="entornoLaboratorio"
+                      />
+                      <label class="form-check-label" for="entornoLaboratorio">
+                        Trabajo en laboratorios e investigación
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <p>¿Le gustan los temas relacionados a la informática?</p>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="informaticos"
+                        id="infoSi"
+                        value="si"
+                      />
+                      <label class="form-check-label" for="infoSi">Sí</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="informaticos"
+                        id="infoNo"
+                        value="no"
+                      />
+                      <label class="form-check-label" for="infoNo">No</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Botones de Acción -->
+              <div class="d-flex justify-content-between">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  onclick="anteriorPaso()"
+                >
+                  Anterior
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="siguientePaso()"
+                >
+                  Siguiente
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 3 (Final) -->
+      <div id="step3" class="step">
+        <div class="card">
+          <div class="card-body">
+            <header class="text-center mb-4">
+              <h1 class="display-4">Resultados</h1>
+              <p class="lead">
+                Hemos concluido con el análisis, estos son los resultados, elige
+                sabiamente.
+              </p>
+              <hr />
+            </header>
+            <div class="row">
+              <div class="col-md-6">
+                <h3>Facultades</h3>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Facultad</th>
+                      <th>Porcentaje (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="facultad-table-body">
+                    <!-- Se llenará dinámicamente -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <h3>Carreras</h3>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Carrera</th>
+                      <th>Porcentaje (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="carreras-table-body">
+                    <!-- Se llenará dinámicamente -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Sección Gráfica -->
+            <div class="row my-5">
+              <div class="col-md-6">
+                <div
+                  class="graph-placeholder d-flex align-items-center justify-content-center"
+                  style="
+                    height: 250px;
+                    background-color: #e9ecef;
+                    border: 1px solid #ced4da;
+                    font-size: 1.25rem;
+                    color: #6c757d;
+                  "
+                >
+                  Gráfico Circular
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="graph-placeholder d-flex align-items-center justify-content-center"
+                  style="
+                    height: 250px;
+                    background-color: #e9ecef;
+                    border: 1px solid #ced4da;
+                    font-size: 1.25rem;
+                    color: #6c757d;
+                  "
+                >
+                  Gráfico de Barras
+                </div>
+              </div>
+            </div>
+            <!-- Botones de Acción -->
+            <div class="d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="anteriorPaso()"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="finalizar()"
+              >
+                Finalizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+          // Funciones del stepper
+      let currentStep = 0;
+      const steps = document.querySelectorAll(".step");
+      const indicators = [
+        document.getElementById("indicator-step1"),
+        document.getElementById("indicator-step2"),
+        document.getElementById("indicator-step3")
+      ];
+
+      function actualizarStep() {
+        steps.forEach((step, index) => {
+          step.classList.toggle("active", index === currentStep);
+          if (index < currentStep) {
+            indicators[index].classList.add("completed");
+            indicators[index].classList.remove("active");
+          } else if (index === currentStep) {
+            indicators[index].classList.add("active");
+            indicators[index].classList.remove("completed");
+          } else {
+            indicators[index].classList.remove("active", "completed");
+          }
+        });
+      }
+
+      function siguientePaso() {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          actualizarStep();
+        }
+      }
+
+      function anteriorPaso() {
+        if (currentStep > 0) {
+          currentStep--;
+          actualizarStep();
+        }
+      }
+
+      function finalizar() {
+        alert("Proceso completado");
+        // Ejemplo de redirección:
+        // window.location.href = "inicio_estudiante.html";
+      }
+    </script>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="analizer.js"></script>
+  </body>
+</html>

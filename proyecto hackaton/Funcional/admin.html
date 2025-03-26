@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniMatch - Administración</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="tau-prolog.js"></script>
+    <script src="admin-script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UniMatch <span class="subtitle">- Panel de Administración</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="student.html">Módulo Estudiantes</a></li>
+                    <li><a href="admin.html" class="active">Administración</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Sección de Login -->
+            <section id="login-section" class="panel" >
+                <div class="panel-header">
+                    <h2>Acceso Administrativo</h2>
+                    <p class="intro-text">Ingrese sus credenciales para acceder al panel de administración.</p>
+                </div>
+                
+                <form id="login-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="username">Usuario:</label>
+                            <input type="text" id="username" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="password" required>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" class="btn-primary">Iniciar Sesión</button>
+                    </div>
+                </form>
+            </section>
+            
+            <!-- Panel de Administración -->
+            <div id="admin-panel" style="display:none;">
+                <!-- Sección para editar la base de conocimiento -->
+                <section class="panel">
+                    <div class="panel-header">
+                        <h2>Base de Conocimiento</h2>
+                        <p class="intro-text">Edite la base de conocimiento en formato Prolog.</p>
+                    </div>
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="knowledge">Base de Conocimiento</button>
+                        <button class="tab-btn" data-tab="careers">Carreras</button>
+                        <button class="tab-btn" data-tab="courses">Cursos</button>
+                        <button class="tab-btn" data-tab="aptitudes">Aptitudes y Habilidades</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="knowledge-tab">
+                        <div class="editor-container">
+                            <textarea id="knowledge-content" class="code-editor"></textarea>
+                        </div>
+                        <div class="button-container">
+                            <input type="file" id="upload-knowledge" accept=".pl" style="display: none;">
+                            <button id="browse-knowledge" class="btn-secondary">Cargar Archivo .pl</button>
+                            <button id="save-knowledge" class="btn-primary">Guardar Cambios</button>
+                            <button id="download-knowledge" class="btn-secondary">Descargar Archivo</button>
+                            <button id="validate-knowledge" class="btn-secondary">Validar Sintaxis</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="careers-tab">
+                        <h3>Gestión de Carreras</h3>
+                        <div id="carreras-container">
+                            <!-- Aquí se generará dinámicamente la lista de carreras -->
+                            <div class="career-form">
+                                <h4>Agregar Nueva Carrera</h4>
+                                <form id="add-career-form">
+                                    <div class="form-row">
+                                        <div class="input-group">
+                                            <label for="career-id">ID de Carrera:</label>
+                                            <input type="text" id="career-id" required placeholder="Ej: ingenieria_sistemas">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="career-faculty">Facultad:</label>
+                                            <input type="text" id="career-faculty" required placeholder="Ej: ingenieria" list="facultades-list">
+                                            <!-- El datalist se añadirá dinámicamente mediante JavaScript -->
+                                        </div>
+                                    </div>
+                                    <h5>Aptitudes</h5>
+                                    <div class="checkbox-grid career-aptitudes">
+                                        <!-- <label><input type="checkbox" name="career-aptitud" value="logica"> Lógica</label> -->
+                                    </div>
+                                    <h5>Habilidades</h5>
+                                    <div class="checkbox-grid career-habilidades">
+                                        <!-- <label><input type="checkbox" name="career-habilidad" value="logica"> Lógica</label> -->
+                                    </div>
+                                    <h5>Intereses</h5>
+                                    <div class="checkbox-grid career-intereses">
+                                        <!-- <label><input type="checkbox" name="career-interes" value="tecnologica"> Tecnología e Informática</label> -->
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="submit" class="btn-primary">Agregar Carrera</button>
+                                        <!-- El botón de cancelar se añadirá dinámicamente con JavaScript -->
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="career-list">
+                                <h4>Carreras Existentes</h4>
+                                <div id="careers-list">
+                                    <!-- Se llenará dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="courses-tab">
+                        <h3>Gestión de Cursos</h3>
+                        <div id="cursos-container">
+                            <!-- Aquí se generará dinámicamente la lista de cursos -->
+                            <div class="course-form">
+                                <h4>Agregar Nuevo Curso</h4>
+                                <form id="add-course-form">
+                                    <div class="form-row">
+                                        <div class="input-group">
+                                            <label for="course-id">ID del Curso:</label>
+                                            <input type="text" id="course-id" required placeholder="Ej: calculo1">
+                                        </div>
+                                    </div>
+                                    
+                                    <h5>Secciones</h5>
+                                    <div id="sections-container">
+                                        <div class="section-entry">
+                                            <div class="form-row">
+                                                <div class="input-group">
+                                                    <label>Sección:</label>
+                                                    <input type="text" name="section-id" required placeholder="Ej: a">
+                                                </div>
+                                                <div class="input-group">
+                                                    <label>Horario:</label>
+                                                    <input type="text" name="section-time" required placeholder="Ej: Lunes 8:00-10:00">
+                                                </div>
+                                                <button type="button" class="btn-small remove-section">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="button-container">
+                                        <button type="button" id="add-section" class="btn-secondary">+ Agregar Sección</button>
+                                        <button type="submit" class="btn-primary">Agregar Curso</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="course-list">
+                                <h4>Cursos Existentes</h4>
+                                <div id="courses-list">
+                                    <!-- Se llenará dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="aptitudes-tab">
+                        <h3>Gestión de Aptitudes y Habilidades</h3>
+                        <div id="aptitudes-container">
+                            <div class="aptitudes-form">
+                                <h4>Agregar Nueva Aptitud o Habilidad</h4>
+                                <form id="add-aptitud-form">
+                                    <div class="form-row">
+                                        <div class="input-group">
+                                            <label for="aptitud-id">ID de Aptitud/Habilidad:</label>
+                                            <input type="text" id="aptitud-id" required placeholder="Ej: liderazgo">
+                                            <small>Solo letras minúsculas, números y guiones bajos</small>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="aptitud-nombre">Nombre para mostrar:</label>
+                                            <input type="text" id="aptitud-nombre" required placeholder="Ej: Liderazgo">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="aptitud-tipo">Tipo:</label>
+                                            <select id="aptitud-tipo" required>
+                                                <option value="aptitud">Aptitud</option>
+                                                <option value="habilidad">Habilidad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="submit" class="btn-primary">Agregar Aptitud/Habilidad</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="aptitudes-list-container">
+                                <div class="aptitudes-list">
+                                    <h4>Aptitudes Existentes</h4>
+                                    <div id="aptitudes-list">
+                                        <!-- Se llenará dinámicamente -->
+                                    </div>
+                                </div>
+                                <div class="habilidades-list">
+                                    <h4>Habilidades Existentes</h4>
+                                    <div id="habilidades-list">
+                                        <!-- Se llenará dinámicamente -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 UniMatch - Sistema Inteligente de Selección de Carreras</p>
+            <a href="index.html">Volver a Inicio</a>
+        </footer>
+    </div>
+</body>
+</html>

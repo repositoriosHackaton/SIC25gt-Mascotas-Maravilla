@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Intereses</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        hr {
+            border-top: 2px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Encabezado -->
+        <header class="text-center mb-4">
+            <h1 class="display-4">Bienvenido</h1>
+            <p class="lead">Ingresa los datos solicitados y descubre tu carrera adecuada.</p>
+            <hr>
+        </header>
+        <!-- Cuerpo del formulario -->
+        <form id="formIntereses">
+            <div class="row">
+                <!-- Columna Izquierda: Porcentaje de Interés -->
+                <div class="col-md-6">
+                    <h3>Porcentaje de Interés</h3>
+                    <p>Ingrese el porcentaje de interés sobre los siguientes temas.</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Área</th>
+                                <th>Interés (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ingeniería y tecnología</td>
+                                <td><input type="number" class="form-control" value="50"></td>
+                            </tr>
+                            <tr>
+                                <td>Ciencias de la salud</td>
+                                <td><input type="number" class="form-control" value="20"></td>
+                            </tr>
+                            <tr>
+                                <td>Economía y negocios</td>
+                                <td><input type="number" class="form-control" value="80"></td>
+                            </tr>
+                            <tr>
+                                <td>Arte y diseño</td>
+                                <td><input type="number" class="form-control" value="10"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Columna Derecha: Preferencias -->
+                <div class="col-md-6">
+                    <h3 class="text-center">Preferencias</h3>
+                    <div class="mb-4">
+                        <p>¿En qué tipo de entorno laboral se sentiría más cómodo?</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="oficina" id="entornoOficina">
+                            <label class="form-check-label" for="entornoOficina">Trabajo de Oficina</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="campo" id="entornoCampo">
+                            <label class="form-check-label" for="entornoCampo">Trabajo de Campo en la Naturaleza</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="laboratorio" id="entornoLaboratorio">
+                            <label class="form-check-label" for="entornoLaboratorio">Trabajo en laboratorios e investigación</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p>¿Le gustan los temas relacionados a la informática?</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="informaticos" id="infoSi" value="si">
+                            <label class="form-check-label" for="infoSi">Sí</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="informaticos" id="infoNo" value="no">
+                            <label class="form-check-label" for="infoNo">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón de Acción -->
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Siguiente</button>
+            </div>
+        </form>
+    </div>
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('formIntereses').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = "resultados.html";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+    "facultades": [
+        {
+            "id": 1,
+            "nombre": "Ingeniería",
+            "carreras": [
+                {
+                    "id": 101,
+                    "nombre": "Ingeniería en Sistemas",
+                    "aptitudesRequeridas": ["Lógica", "Programación"],
+                    "habilidades": ["Análisis", "Desarrollo"]
+                }
+            ]
+        }
+    ],
+    "aptitudes": [
+        {
+            "id": 1,
+            "nombre": "Lógica",
+            "descripcion": "Capacidad de pensamiento lógico"
+        }
+    ],
+    "habilidades": [
+        {
+            "id": 1,
+            "nombre": "Programación",
+            "descripcion": "Desarrollo de software"
+        }
+    ],
+    "intereses": [
+        {
+            "id": 1,
+            "nombre": "Tecnología",
+            "nivel": 5
+        }
+    ],
+    "cursos": ["Matemática", "Física", "Química"]
+}

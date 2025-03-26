@@ -1,0 +1,104 @@
+{
+    "facultades": [
+        {
+            "id": 1,
+            "nombre": "Facultad de Ingeniería",
+            "carreras": [
+                {
+                    "id": 101,
+                    "nombre": "Ingeniería Industrial",
+                    "aptitudesRequeridas": [
+                        "analitica",
+                        "logica"
+                    ],
+                    "nivelesInteres": {
+                        "matematicas": 7,
+                        "tecnologia": 6
+                    },
+                    "habilidades": [
+                        "sinceridad",
+                        "amabilidad",
+                        "cultura",
+                        "deporte"
+                    ],
+                    "preferencias": [
+                        "trabajo en equipo",
+                        "organización"
+                    ]
+                },
+                {
+                    "id": 102,
+                    "nombre": "Ingeniería Mecánica",
+                    "aptitudesRequeridas": [
+                        "analitica",
+                        "espacial"
+                    ],
+                    "nivelesInteres": {
+                        "fisica": 8,
+                        "tecnologia": 7
+                    },
+                    "habilidades": [
+                        "sinceridad",
+                        "amabilidad",
+                        "cultura",
+                        "risitas"
+                    ],
+                    "preferencias": [
+                        "diseño industrial",
+                        "innovación"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Facultad de Artes",
+            "carreras": [
+                {
+                    "id": 201,
+                    "nombre": "Diseño Gráfico",
+                    "aptitudesRequeridas": [
+                        "creativa",
+                        "imaginativa"
+                    ],
+                    "nivelesInteres": {
+                        "arte": 8,
+                        "comunicacion": 7
+                    },
+                    "habilidades": [
+                        "sinceridad",
+                        "amabilidad",
+                        "cultura",
+                        "risitas"
+                    ],
+                    "preferencias": [
+                        "estilo",
+                        "comunicación visual"
+                    ]
+                },
+                {
+                    "id": 202,
+                    "nombre": "Música",
+                    "aptitudesRequeridas": [
+                        "sensible",
+                        "expresiva"
+                    ],
+                    "nivelesInteres": {
+                        "musica": 9,
+                        "creatividad": 8
+                    },
+                    "habilidades": [
+                        "sinceridad",
+                        "amabilidad",
+                        "cultura",
+                        "deporte"
+                    ],
+                    "preferencias": [
+                        "creatividad",
+                        "innovación"
+                    ]
+                }
+            ]
+        }
+    ]
+}

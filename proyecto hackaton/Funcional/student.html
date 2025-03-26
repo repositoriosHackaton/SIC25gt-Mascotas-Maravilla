@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniMatch - Estudiantes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="tau-prolog.js"></script>
+  <script src="script.js" defer></script>
+  <script src="data.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>UniMatch <span class="subtitle">- Módulo de Estudiantes</span></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#recomendacion" class="active">Recomendación de Carrera</a></li>
+          <li><a href="#horario">Planificación de Horario</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+      <div id="knowledge-status" style="display:none;" class="notification">
+        <p>Se están utilizando reglas personalizadas desde el panel administrativo. 
+          <button id="reset-knowledge" class="btn-small">Restablecer reglas originales</button>
+        </p>
+      </div>
+
+      <section id="recomendacion" class="panel">
+        <div class="panel-header">
+          <h2>Recomendación de Carrera</h2>
+          <p class="intro-text">Selecciona tus aptitudes, habilidades, intereses y preferencias para recibir recomendaciones de carreras personalizadas.</p>
+        </div>
+        
+        <form id="form-recomendacion">
+          <div class="form-row">
+            <div class="form-col">
+              <fieldset>
+                <legend>Tus Aptitudes</legend>
+                <div id="aptitudes" class="checkbox-grid">
+                  <!-- <label><input type="checkbox" name="aptitud" value="logica"> Lógica</label>
+                  <label><input type="checkbox" name="aptitud" value="analitico"> Analítico</label>
+                  <label><input type="checkbox" name="aptitud" value="tecnologia"> Tecnología</label>
+                  <label><input type="checkbox" name="aptitud" value="matematicas"> Matemáticas</label>
+                  <label><input type="checkbox" name="aptitud" value="organizacion"> Organización</label>
+                  <label><input type="checkbox" name="aptitud" value="comunicacion"> Comunicación</label>
+                  <label><input type="checkbox" name="aptitud" value="empatia"> Empatía</label>
+                  <label><input type="checkbox" name="aptitud" value="sociales"> Sociales</label> -->
+                </div>
+              </fieldset>
+            </div>
+            
+            <div class="form-col">
+              <fieldset>
+                <legend>Tus Habilidades</legend>
+                <div id = "habilidades"class="checkbox-grid">
+                  <!-- <label><input type="checkbox" name="habilidad" value="programacion"> Programación</label>
+                  <label><input type="checkbox" name="habilidad" value="diseno"> Diseño</label>
+                  <label><input type="checkbox" name="habilidad" value="investigacion"> Investigación</label>
+                  <label><input type="checkbox" name="habilidad" value="oratoria"> Oratoria</label>
+                  <label><input type="checkbox" name="habilidad" value="redaccion"> Redacción</label>
+                  <label><input type="checkbox" name="habilidad" value="trabajo_equipo"> Trabajo en equipo</label>
+                  <label><input type="checkbox" name="habilidad" value="liderazgo"> Liderazgo</label>
+                  <label><input type="checkbox" name="habilidad" value="creatividad"> Creatividad</label> -->
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <fieldset>
+                <legend>Tus Intereses</legend>
+                <div id="intereses" class="checkbox-grid">
+                  <!-- <label><input type="checkbox" name="interes" value="tecnologica"> Tecnología e Informática</label>
+                  <label><input type="checkbox" name="interes" value="salud"> Ciencias de la Salud</label>
+                  <label><input type="checkbox" name="interes" value="construccion"> Construcción e Infraestructura</label>
+                  <label><input type="checkbox" name="interes" value="juridica"> Ciencias Jurídicas</label>
+                  <label><input type="checkbox" name="interes" value="empresarial"> Administración y Negocios</label>
+                  <label><input type="checkbox" name="interes" value="humana"> Ciencias Humanas y Sociales</label>
+                  <label><input type="checkbox" name="interes" value="artistica"> Artes y Diseño</label>
+                  <label><input type="checkbox" name="interes" value="cientifica"> Investigación Científica</label> -->
+                </div>
+              </fieldset>
+            </div>
+            
+            <div class="form-col">
+              <fieldset>
+                <legend>Tus Preferencias</legend>
+                <div id="preferencias" class="checkbox-grid">
+                  <!-- <label><input type="checkbox" name="preferencia" value="trabajo_equipo"> Trabajar en equipo</label>
+                  <label><input type="checkbox" name="preferencia" value="trabajo_individual"> Trabajar individualmente</label>
+                  <label><input type="checkbox" name="preferencia" value="aire_libre"> Trabajo al aire libre</label>
+                  <label><input type="checkbox" name="preferencia" value="oficina"> Trabajo en oficina</label>
+                  <label><input type="checkbox" name="preferencia" value="creatividad"> Usar mi creatividad</label>
+                  <label><input type="checkbox" name="preferencia" value="analisis"> Usar mi capacidad analítica</label>
+                  <label><input type="checkbox" name="preferencia" value="interaccion_personas"> Interactuar con personas</label>
+                  <label><input type="checkbox" name="preferencia" value="tecnologia"> Usar tecnología avanzada</label> -->
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          
+          <div class="button-container">
+            <button type="submit" class="btn-primary">Obtener Mi Recomendación</button>
+          </div>
+        </form>
+        
+        <div id="resultado-recomendacion" class="results-container"></div>
+      </section>
+
+      <section id="horario" class="panel">
+        <div class="panel-header">
+          <h2>Planificación de Horario</h2>
+          <p class="intro-text">Selecciona los cursos que deseas inscribir para generar tu horario optimizado.</p>
+        </div>
+        
+        <form id="form-horario">
+          <fieldset>
+            <legend>Cursos Disponibles</legend>
+            <div id="cursos" class="curso-grid">
+              <!-- <label><input type="checkbox" name="curso" value="matematicas"> Matemáticas</label>
+              <label><input type="checkbox" name="curso" value="programacion"> Programación</label>
+              <label><input type="checkbox" name="curso" value="fisica"> Física</label>
+              <label><input type="checkbox" name="curso" value="calculo1"> Cálculo 1</label>
+              <label><input type="checkbox" name="curso" value="fisica1"> Física 1</label>
+              <label><input type="checkbox" name="curso" value="quimica1"> Química 1</label> -->
+            </div>
+          </fieldset>
+          
+          <div class="button-container">
+            <button type="submit" class="btn-primary">Generar Mi Horario</button>
+          </div>
+        </form>
+        
+        <div id="resultado-horario" class="results-container"></div>
+      </section>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 UniMatch - Sistema Inteligente de Selección de Carreras</p>
+      <a href="index.html">Volver a Inicio</a>
+    </footer>
+  </div>
+  
+  <script>
+    // Script adicional para mostrar notificación de reglas personalizadas
+    document.addEventListener("DOMContentLoaded", function() {
+      if (localStorage.getItem('knowledgeBase')) {
+        document.getElementById('knowledge-status').style.display = 'block';
+      }
+      
+      document.getElementById('reset-knowledge').addEventListener('click', function() {
+        if (confirm("¿Desea restablecer las reglas originales?")) {
+          localStorage.removeItem('knowledgeBase');
+          localStorage.removeItem('studentAptitudes');
+          localStorage.removeItem('studentHabilidades');
+          location.reload();
+        }
+      });
+
+      // Agregamos una alerta para aptitudes/habilidades personalizadas
+      const hasCustomAptitudes = localStorage.getItem('studentAptitudes') || localStorage.getItem('studentHabilidades');
+      if (hasCustomAptitudes) {
+        const customNotification = document.createElement('div');
+        customNotification.className = 'notification';
+        customNotification.innerHTML = `
+          <p>Hay aptitudes o habilidades personalizadas añadidas desde el panel administrativo.</p>
+        `;
+        
+        // Insertar antes del primer formulario
+        const firstSection = document.querySelector('#recomendacion');
+        document.querySelector('main').insertBefore(customNotification, firstSection.nextSibling);
+      }
+    });
+  </script>
+</body>
+</html>
